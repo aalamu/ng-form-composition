@@ -1,0 +1,45 @@
+<p>
+  <b>Notification Message: </b> {{statusMessage}}
+</p>
+
+@if (isComponentReady && isFormReady) {
+  <form name="create-chat-room" method="post" enctype="application/x-www-form-urlencoded" autocomplete="off" [formGroup]="createChatRoomForm" (ngSubmit)="createChatRoom()">
+    <div>
+      <label for="title">Title*:</label>
+      <input type="text" id="title" name="title" formControlName="title" autocomplete="off"/>
+    </div>
+
+    <div>
+      <label for="description">Description*:</label>
+      <input type="text" id="description" name="description" formControlName="description" autocomplete="off"/>
+    </div>
+
+
+    <div>
+      <label for="tags">Tags*:</label>
+      <input type="text" id="tags" name="tags" formControlName="tags" autocomplete="off"/>
+    </div>
+
+    <div>
+      <label for="guidelines">Guidelines or Rules*:</label>
+      <input type="text" id="guidelines" name="guidelines" formControlName="guidelinesOrRules" autocomplete="off"/>
+    </div>
+
+
+    <div>
+      @for (entry of formModel.visibilities; track $index;) {
+        <input type="radio" name="visibility" formControlName="visibility" [id]="entry" [value]="entry" autocomplete="off"/>
+        <label [for]="entry">{{ entry | titlecase }}</label>
+      }
+    </div>
+
+    <button type="submit" [disabled]="isSubmitting">Create
+
+      @if (isFormCompleted) {<fa-icon [icon]="faCheck"/>}
+      @else if (isSubmitting) {<fa-icon [icon]="faSpinner" [animation]="'spin'"/>}
+      @else if (isNotSubmitting) {<fa-icon [icon]="faPlus"/>}
+    </button>
+  </form>
+
+  Form is Valid {{formModel.isFormValid}}
+}
