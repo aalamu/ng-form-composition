@@ -74,7 +74,7 @@ export abstract class BaseForm<T> {
     this.enableFormComplete();
 
     // Set a timer to reset form completion status
-    timer(delayToReset).pipe(
+    timer(safeDelay).pipe(
       // Reset form completion status
       tap(() => this.disableFormCompleted()),
     ).subscribe();
