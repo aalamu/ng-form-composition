@@ -1,4 +1,5 @@
-# FormComposition
+# ng-form-composition
+Its an Angular project that is based on preferred composition of features including Forms in Components vs Inheritance
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.6.
 
